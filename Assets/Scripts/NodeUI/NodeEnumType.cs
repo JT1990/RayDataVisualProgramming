@@ -1,6 +1,7 @@
 // *************************************************************************************************************
 // 创建者: 魏国栋
-// 创建时间: 2020/12/18 16:20:20
+// 创建时间: 2020/12/23 17:16:18
+// 挂载对象: 
 // 功能: 
 // 版 本：v 1.2.0
 // *************************************************************************************************************
@@ -8,27 +9,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public enum NodeType
+    public enum ParameterType
     {
-        //C# 常用数据类型
-        String,
-        Int,
-        Float,
-        Double,
-        Long,
-        List,
-        Array,
-
-        //Unity 常用数据类型
         GameObject,
         Transform,
-        Vector3,
-        Vector2,
-
-
+        String,
+        Int,
+        Double,
+        Float,
+        List,
+        Object,
     }
+
+    public enum PortType
+    {
+        None,
+        RoutineInProt,
+        RoutineOutProt,
+        ParamterInPort,
+        ParamterOutPort
+    }
+
 }

@@ -110,7 +110,6 @@ namespace Raydata.VisualProgramming
                 MainPanel.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
             //限制范围
             MainPanel.localScale = new Vector3(Mathf.Clamp(MainPanel.localScale.x, 0.2f, 3f), Mathf.Clamp(MainPanel.localScale.y, 0.2f, 3f), Mathf.Clamp(MainPanel.localScale.z, 0.2f, 3f));
-            GLDrawLineController.instance.UpdatePointWhenScroll();
 
         }
 

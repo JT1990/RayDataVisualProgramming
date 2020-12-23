@@ -12,18 +12,18 @@ namespace Raydata.VisualProgramming
         {
             if(mRectTrans==null)
             {
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(GlobalObject.Instance.m_RectTrans, screenPoint, GLDrawLineController.instance.mainCamera, out tempV2);
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(GlobalObject.Instance.m_RectTrans, screenPoint, GlobalObject.Instance.mainCamera, out tempV2);
             }
             else
             {
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(mRectTrans, screenPoint, GLDrawLineController.instance.mainCamera, out tempV2);
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(mRectTrans, screenPoint, GlobalObject.Instance.mainCamera, out tempV2);
             }
             return tempV2;
         }
 
         public static Vector2 WorldToScreenPoint(Vector3 worldPoint)
         {
-            return RectTransformUtility.WorldToScreenPoint(GLDrawLineController.instance.mainCamera, worldPoint);
+            return RectTransformUtility.WorldToScreenPoint(GlobalObject.Instance.mainCamera, worldPoint);
         }
     }
 }

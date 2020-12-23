@@ -303,7 +303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 47.715, y: 0}
+  m_AnchoredPosition: {x: 47.715004, y: 0}
   m_SizeDelta: {x: -44.57, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &544966360150972031
@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
+  m_Color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 0.7490196}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -733,11 +733,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027022b3cd7a9574ab7a641753eea79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inPortBtn: {fileID: 0}
-  outPortBtn: {fileID: 0}
-  dotBtn: {fileID: 0}
+  inRoutinePortBtn: {fileID: 0}
+  outRoutinePortBtn: {fileID: 0}
+  inParamterPortBtn: {fileID: 0}
+  outParamterPortBtn: {fileID: 0}
+  dotImg: {fileID: 0}
+  startClickPortType: 0
+  endClickPortType: 0
   curClickTrans: {fileID: 0}
-  dotType: 0
   inputField_X: {fileID: 0}
   inputField_y: {fileID: 0}
   inputField_z: {fileID: 0}
@@ -754,7 +757,7 @@ GameObject:
   - component: {fileID: 2531546509448212701}
   - component: {fileID: 2531546509448212702}
   m_Layer: 5
-  m_Name: InPort
+  m_Name: ParamInPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,7 +874,7 @@ GameObject:
   - component: {fileID: 2531546509737792467}
   - component: {fileID: 2531546509737792465}
   m_Layer: 5
-  m_Name: OutPort
+  m_Name: ParamOutPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1898,7 +1901,7 @@ GameObject:
   - component: {fileID: 2140205824203210034}
   - component: {fileID: 5967917656432743460}
   m_Layer: 5
-  m_Name: OutPort
+  m_Name: Routine\OutPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1944,7 +1947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8446636, b: 0, a: 1}
+  m_Color: {r: 0.42419934, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2231,7 +2234,7 @@ GameObject:
   - component: {fileID: 2359254764412153478}
   - component: {fileID: 3158456730920488371}
   m_Layer: 5
-  m_Name: InPort
+  m_Name: RoutineInPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2277,7 +2280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8446636, b: 0, a: 1}
+  m_Color: {r: 0.42419934, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

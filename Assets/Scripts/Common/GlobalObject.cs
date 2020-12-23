@@ -20,12 +20,12 @@ namespace Raydata.VisualProgramming
         public RectTransform m_ChoosabilityNodeGroupRect;
         [HideInInspector]
         public Vector2 m_OffsetRectSize_ChoosabilityNodeGroup;
-
-
+        public Camera mainCamera;
 
         private void Start()
         {
             m_OffsetRectSize_ChoosabilityNodeGroup = new Vector2(m_ChoosabilityNodeGroupRect.sizeDelta.x/2,-m_ChoosabilityNodeGroupRect.sizeDelta.y / 2);
+          
         }
 
     }

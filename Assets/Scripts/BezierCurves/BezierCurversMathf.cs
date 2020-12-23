@@ -7,6 +7,7 @@ namespace Raydata.VisualProgramming
     public class BezierCurversMathf
     {
 
+        static List<Vector3> bezierCurvesPoints;
         /// <summary>
         /// 绘制n阶贝塞尔曲线路径
         /// </summary>
@@ -14,9 +15,9 @@ namespace Raydata.VisualProgramming
         /// <param name="count">点数-1</param>
         /// <param name="step">步长,步长越小，轨迹点越密集</param>
         /// <returns></returns>
-        public static Vector3[] DrawBezierCurves(Vector3[] points, int count, float step)
+        public static Vector3[] GetBezierCurvesVertex(Vector3[] points, int count, float step)
         {
-            List<Vector3> bezierCurvesPoints = new List<Vector3>();
+            bezierCurvesPoints = new List<Vector3>();
             float t = 0f;
             do
             {

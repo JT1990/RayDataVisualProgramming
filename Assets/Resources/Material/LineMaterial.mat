@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LineMaterial
-  m_Shader: {fileID: 4800000, guid: ea0fc693c0b26a84eb9701344628a408, type: 3}
+  m_Shader: {fileID: 4800000, guid: 84045cc26d23d644dad526571690ead0, type: 3}
   m_ShaderKeywords: _COLOROVERLAY_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -43,6 +43,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EmissionTex:
+        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 0.5}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
@@ -73,8 +77,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - _BlendMode_Dst: 0
-    - _BlendMode_Src: 0
+    - _BlendMode_Dst: 10
+    - _BlendMode_Src: 5
     - _BlendOp: 0
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
@@ -92,9 +96,12 @@ Material:
     - _DistortionStrengthScaled: 0
     - _DstBlend: 0
     - _EmissionEnabled: 0
+    - _EmissionTex_U_Speed: -1
+    - _EmissionTex_V_Speed: 0
     - _EnableExternalAlpha: 0
     - _FadeValue: -0.25
     - _Fade_Button: 0
+    - _Fade_Distance: 500
     - _Fade_Distance1: 500
     - _FlipbookMode: 0
     - _Global_Opacity: 1
@@ -132,7 +139,7 @@ Material:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 0.2901961, b: 0, a: 0.2627451}
     - _ColorAddSubDiff: {r: -1, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 0.53759146, b: 0.5330188, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}

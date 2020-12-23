@@ -9,70 +9,115 @@ namespace Raydata.VisualProgramming
 {
     public class NodeUIBase : MonoBehaviour
     {
+        public GameObject inRoutinePortBtn;
+
+        public GameObject outRoutinePortBtn;
+
+
         /// <summary>
         /// 接收参数的入口,在这个点上接收参数,等同于方法的参数
         /// </summary>
-        public Button inPortBtn;
+        public GameObject inParamterPortBtn;
 
         /// <summary>
         /// 传出参数的出口,在这个点上传出参数,等同于方法的返回值
         /// </summary>
-        public Button outPortBtn;
+        public GameObject outParamterPortBtn;
 
         /// <summary>
         /// 线的终点,点击箭头表示画线结束
         /// </summary>
-        public GameObject dotBtn;
-
-        /// <summary>
-        /// 当前点击的对象
-        /// </summary>
-        [HideInInspector]
-        public Transform curClickTrans;
-
+        public GameObject dotImg;
+          
         /// <summary>
         /// 
         /// </summary>
         [HideInInspector]
-        public DotType dotType;
-        BezierCurversDrawer lineDrawer;
+        public PortType startClickPortType;
+        [HideInInspector]
+        public PortType endClickPortType;
+        [HideInInspector]
+        public Transform curClickTrans;
+        private LineRenderDrawer linedrawer;
 
         public virtual void Start()
         {
+            FindObejct();
+            AddListener();
+        }
 
-            if(!inPortBtn) inPortBtn = transform.Find("ParamPort/InPort").GetComponent<Button>();
-            if(!outPortBtn) outPortBtn = transform.Find("ParamPort/OutPort").GetComponent<Button>();
-            if(!dotBtn) dotBtn = transform.Find("ParamPort/Dot").gameObject;
+
+        private void FindObejct()
+        {
+            if(!inRoutinePortBtn) inRoutinePortBtn = transform.Find("RoutinePort/RoutineInPort").gameObject;
+            if(!outRoutinePortBtn) outRoutinePortBtn = transform.Find("RoutinePort/RoutineOutPort").gameObject;
+
+            if(!inParamterPortBtn) inParamterPortBtn = transform.Find("ParamPort/ParamInPort").gameObject;
+            if(!outParamterPortBtn) outParamterPortBtn = transform.Find("ParamPort/ParamOutPort").gameObject;
+
+            if(!dotImg) dotImg = transform.Find("ParamPort/Dot").gameObject;
+        }
+
+        private void AddListener()
+        {
+            EventTriggerListener.Get(inRoutinePortBtn).onClick += InRoutine_PortBtn_OnClick;
+            EventTriggerListener.Get(outRoutinePortBtn).onClick += OutRoutine_PortBtn_OnClick;
+
+            EventTriggerListener.Get(inParamterPortBtn).onClick += InParamter_PortBtn_OnClick;
+            EventTriggerListener.Get(outParamterPortBtn).onClick += OutParamter_PortBtn_OnClick;
+
+            EventTriggerListener.Get(inRoutinePortBtn).onEnter += InRoutine_PortBtn_OnEnter;
+            EventTriggerListener.Get(outRoutinePortBtn).onEnter += OutRoutine_PortBtn_OnEnter;
+
+            EventTriggerListener.Get(inParamterPortBtn).onEnter += InParamter_PortBtn_OnEnter;
+            EventTriggerListener.Get(outParamterPortBtn).onEnter += OutParamter_PortBtn_OnEnter;
+        }
+
+        private void InRoutine_PortBtn_OnClick(GameObject go, PointerEventData eventData)
+        {
+
+        }
+
+        private void OutRoutine_PortBtn_OnClick(GameObject go, PointerEventData eventData)
+        {
             
-            //注册事件
-            inPortBtn.onClick.AddListener(InPortBtnOnClick);
-            outPortBtn.onClick.AddListener(OutPortBtnOnClick);
-
         }
 
-        private void InPortBtnOnClick()
+        private void InParamter_PortBtn_OnClick(GameObject go, PointerEventData eventData)
         {
-            curClickTrans = inPortBtn.transform;
-            dotType = DotType.INDOT;
-            lineDrawer = new BezierCurversDrawer(this);
+         
         }
 
-        public virtual void OutPortBtnOnClick()
+        private void OutParamter_PortBtn_OnClick(GameObject go, PointerEventData eventData)
         {
-            curClickTrans = outPortBtn.transform;
-            dotType = DotType.OUTDOT; 
-            lineDrawer = new BezierCurversDrawer(this);
+            Debug.Log("OutParamter_PortBtn_OnClick");
+            curClickTrans = outParamterPortBtn.transform;
+            startClickPortType = PortType.ParamterOutPort;
+            linedrawer = new LineRenderDrawer(this);
+            LineRenderDrawerController.Instance.AddLine(linedrawer);
         }
 
-      
-        
+        private void InRoutine_PortBtn_OnEnter(GameObject go, PointerEventData eventData)
+        {
+            
+        }
+
+        private void OutRoutine_PortBtn_OnEnter(GameObject go, PointerEventData eventData)
+        {
+           
+        }
+
+        private void InParamter_PortBtn_OnEnter(GameObject go, PointerEventData eventData)
+        {
+            
+        }
+
+        private void OutParamter_PortBtn_OnEnter(GameObject go, PointerEventData eventData)
+        {
+            Debug.Log("OutParamter_PortBtn_OnEnter");
+        }
     }
 
-    public enum DotType
-    {
-        NONE,
-        INDOT,
-        OUTDOT
-    }
+    
 
 }
