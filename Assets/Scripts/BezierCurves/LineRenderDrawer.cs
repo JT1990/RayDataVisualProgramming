@@ -32,6 +32,7 @@ namespace Raydata.VisualProgramming
 
         #region 私有字段
         private Vector3[] linepoints;
+        private Vector3 prePointerpPostion=new Vector3(-9999,-9999,-9999);
 
         #endregion
 
@@ -52,7 +53,7 @@ namespace Raydata.VisualProgramming
 
             //
             m_line = GameObject.Instantiate<GameObject>(LineRenderDrawerController.Instance.m_lineRender).GetComponent<LineRenderer>();
-            m_line.positionCount = 4;
+            m_line.positionCount = smooth ;
 
           
 
@@ -61,19 +62,33 @@ namespace Raydata.VisualProgramming
         Vector3 temp;
         public void DrawLineInUpdate()
         {
-            if(isStartDraw)
+             
+            if(m_line==null)
             {
-                if(m_line==null)
+                Debug.LogError("生成linerender失败");
+                return;
+            }
+            if (prePointerpPostion==Input.mousePosition)
+            {
+                return;
+            }
+            prePointerpPostion = Input.mousePosition;
+            if (isStartDraw)
+            {
+                if (isEndDraw)
                 {
-                    Debug.LogError("生成linerender失败");
-                    return;
+                    endPosition = ToolUtility.WorldToScreenPoint(dot.transform.position);
+                    isStartDraw = false;
                 }
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                    GlobalObject.Instance.m_RectTrans, Input.mousePosition, GlobalObject.Instance.mainCamera, out endPosition); ;
+                else
+                {
+                    endPosition = ToolUtility.ScreenPointToLocalPointInRectangle(Input.mousePosition);
+                    dot.transform.position = ToolUtility.ScreenPointToLocalPointInRectangle(Input.mousePosition);
+                }
+
+                Debug.Log(endPosition);
                 DrawBezierCurver_ThreeOrder();
             }
-
-
         }
         public void DrawBezierCurver_ThreeOrder()
         {
@@ -84,8 +99,9 @@ namespace Raydata.VisualProgramming
             tempV3s[1] = startPosition + new Vector3(offsetX, 0, 0);
             tempV3s[2] = endPosition - new Vector3(offsetX, 0, 0);
             tempV3s[3] = endPosition;
-            linepoints  = BezierCurversMathf.GetBezierCurvesVertex(tempV3s, 4, 1 / 10);
-            m_line.SetPositions(tempV3s);
+
+            linepoints = BezierCurversMathf.GetBezierCurvesVertex(tempV3s, 4, 1f / smooth);
+            m_line.SetPositions(linepoints);
         }
     }
 }

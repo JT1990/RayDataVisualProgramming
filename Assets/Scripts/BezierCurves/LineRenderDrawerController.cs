@@ -45,12 +45,17 @@ namespace Raydata.VisualProgramming
 
         private void Update()
         {
-            for(int i = 0; i < lines.Count; i++)
+            StartCoroutine(draw());
+           
+        }
+        IEnumerator draw()
+        {
+            for (int i = 0; i < lines.Count; i++)
             {
                 lines[i].DrawLineInUpdate();
+                yield return new WaitForSeconds(0.1f);
             }
         }
-
         internal void UpdatePointWhenScroll()
         {
             for(int i = 0; i < lines.Count; i++)
