@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Raydata.NodeGraph
+namespace Raydata.VisualProgramming
 {
     public class BezierCurversMathf
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Raydata.NodeGraph
+namespace Raydata.VisualProgramming
 {
 
     /// <summary>
@@ -106,5 +106,13 @@ namespace Raydata.NodeGraph
         }
         #endregion
 
+        public void UpdatePointWhenScroll()
+        {
+            for(int i = 0; i < lines.Count; i++)
+            {
+                lines[i].Refresh();
+                lines[i].DrawBezierCurver_ThreeOrder();
+            }
+        }
     }
 }

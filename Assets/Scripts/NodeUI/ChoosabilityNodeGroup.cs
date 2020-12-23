@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-namespace Raydata.NodeGraph
+namespace Raydata.VisualProgramming
 {
     public class ChoosabilityNodeGroup : MonoBehaviour
     {
