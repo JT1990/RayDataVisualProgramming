@@ -10,7 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 namespace Raydata.VisualProgramming
 {
     public class Launcher : MonoBehaviour
@@ -28,7 +28,10 @@ namespace Raydata.VisualProgramming
             {
                 for(int i = 0; i < startNode.lines.Count; i++)
                 {
-                    Debug.Log(startNode.lines[i].outPort.belongToNode.gameObject.name);
+
+                    MoveNode movenode = (MoveNode)startNode.lines[i].outPort.belongToNode;
+                    GameObject cube = ((SelectObjectNode)movenode.inParameterPort.belongToLine.inPort.belongToNode).UserDefinedObject;
+                    cube.transform.DOMove(new Vector3(10f, 10f, 10f ), 5f) ;
                 }
               
             }

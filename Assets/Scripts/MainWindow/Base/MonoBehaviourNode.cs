@@ -15,13 +15,14 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
+    [HideInInspector]
     public class MonoBehaviourNode : Node
     {
         public RoutinePort outRoutinePort;
 
         public virtual void Start()
         {
-            outRoutinePort = new RoutinePort(this, PropertyType.Routine, IOType.OUTPUT);
+            outRoutinePort = new RoutinePort(this,PropertyType.Routine, IOType.OUTPUT);
             FindPort(outRoutinePort, "RoutineGroup/RoutineOutPort");
             if(outRoutinePort.isShow)
                 EventTriggerListener.Get(outRoutinePort.gameObject).onClick += Out_Routine_Port_OnClick;

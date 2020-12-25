@@ -18,9 +18,8 @@ namespace Raydata.VisualProgramming
     {
 
         public override void Start()
-        { 
+        {
             base.Start();
         }
-
     }
 }

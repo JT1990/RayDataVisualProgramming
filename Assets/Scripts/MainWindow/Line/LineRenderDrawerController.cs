@@ -24,17 +24,18 @@ namespace Raydata.VisualProgramming
         /// <summary>
         /// 一条线必定有两个顶点,一个入点和一个出点.   入点确定了fromnode,出点确定了tonode
         /// </summary>
-        public LineRenderDrawer curLine;
+        [HideInInspector]
+        public Line  curLine;
 
         /// <summary>
         /// 
         /// </summary>
         public Port curClickPort;
-     
+
         /// <summary>
         /// 记录所有的线,
         /// </summary>
-        private List<LineRenderDrawer> lines = new List<LineRenderDrawer>();
+        public List<Line> lines;
 
         /// <summary>
         /// 
@@ -43,19 +44,21 @@ namespace Raydata.VisualProgramming
 
         private void Start()
         {
-            if(linerenderPrfab == null) linerenderPrfab = Resources.Load<GameObject>("Prefab/LineRender/LineRenderPrefab");
+            curLine = null;
+            lines = new List<Line>();
+            if (linerenderPrfab == null) linerenderPrfab = Resources.Load<GameObject>("Prefab/LineRender/LineRenderPrefab");
             if(LineRenderRoot == null) LineRenderRoot = new GameObject("LineRenderRoot").transform;
 
         }
 
-        public void AddLine(LineRenderDrawer line)
+        public void AddLine(Line  line)
         {
             //记录之前先清空,然后赋值
             curLine = null;
             curLine = line;
             lines.Add(line);
         }
-        public void RemoveLine(LineRenderDrawer line)
+        public void RemoveLine(Line  line)
         {
             if(lines.Contains(line))
             {
@@ -63,14 +66,12 @@ namespace Raydata.VisualProgramming
             }
         }
 
-
         bool isUpdate=true;
-        private void Update()
+        private void LateUpdate()
         {
             //减少Update的刷新次数,优化性能
             if(isUpdate)
             {
-                Debug.Log(lines.Count);
                 for(int i = 0; i < lines.Count; i++)
                 {
                     lines[i].DrawLineInUpdate();

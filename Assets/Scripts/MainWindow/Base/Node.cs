@@ -19,14 +19,17 @@ namespace Raydata.VisualProgramming
         /// <summary>
         /// 该节点所有的连线
         /// </summary>
-        public List<LineRenderDrawer> lines=new List<LineRenderDrawer>();
+        public List<Line> lines=new List<Line>();
 
         /// <summary>
         /// 描述
         /// </summary>
         public Description description;
 
-
+        private void Start()
+        {
+             
+        }
 
         public void FindPort(Port outRoutinePort, string path)
         {
@@ -44,19 +47,22 @@ namespace Raydata.VisualProgramming
 
         public void PortOnClick(Port port)
         {
-            if( LineRenderDrawerController.Instance.curLine!=null)
+            Line line;
+            if ( LineRenderDrawerController.Instance.curLine!=null)
             {
-                LineRenderDrawer line = LineRenderDrawerController.Instance.curLine;
+                line = LineRenderDrawerController.Instance.curLine;
+                port.belongToLine = line;
                 line.isEndDraw = true;
-                line.belongToNode = this;
                 line.outPort = port;
                 LineRenderDrawerController.Instance.curClickPort = port;
             }
             else
             {
-                LineRenderDrawer line = new LineRenderDrawer(port);
-                lines.Add(line);
+                Debug.Log(" lines.Add(line);");
+                line = new Line(port);
+                line.inPort = port;
             }
+            lines.Add(line);
         }
           
     }

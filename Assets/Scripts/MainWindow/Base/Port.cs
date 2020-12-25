@@ -13,7 +13,6 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-
     public class Port
     {
         /// <summary>
@@ -27,6 +26,8 @@ namespace Raydata.VisualProgramming
         public Transform transform { get => gameObject.transform; }
 
         public Node belongToNode;
+
+        public Line belongToLine;
         /// <summary>
         /// 可以根据需求自由配置,
         /// 在Show的情况下,才会显示和注册事件.

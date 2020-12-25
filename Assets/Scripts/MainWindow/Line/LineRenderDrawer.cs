@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public class LineRenderDrawer
+    public class Line
     {
         #region LineRender 外观
         /// <summary>
@@ -49,11 +49,6 @@ namespace Raydata.VisualProgramming
         public PropertyType property { get; protected set; }
 
         /// <summary>
-        /// 归属于哪个Node
-        /// </summary>
-        public Node belongToNode;
-
-        /// <summary>
         /// 一条线的入点
         /// </summary>
         public Port inPort;
@@ -73,10 +68,9 @@ namespace Raydata.VisualProgramming
         private Vector3 prePointerpPostion=new Vector3(-99999,-99999,-99999);
 
 
-        public LineRenderDrawer(Port port)
+        public Line(Port port)
         {
             this.property = port.property;
-            this.belongToNode = port.belongToNode;
             startPosition = port.transform.position;
             isStartFromInPort = port.IO == IOType.INPUT; 
             isStartDraw = true;

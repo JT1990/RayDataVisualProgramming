@@ -15,7 +15,7 @@ namespace Raydata.VisualProgramming
 {
     public class ParameterPort : Port
     {
-        public ParameterPort(Node belongToNode, PropertyType property, IOType iO, bool isShow = true) : base(belongToNode, property, iO, isShow)
+        public ParameterPort(Node belongToNode,  PropertyType property, IOType iO, bool isShow = true) : base(belongToNode, property, iO, isShow)
         {
         }
     }
