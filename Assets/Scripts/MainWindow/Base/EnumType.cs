@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public enum ParamType
+    public enum ParameterType
     {
         GameObject,
         Transform,
@@ -25,7 +25,7 @@ namespace Raydata.VisualProgramming
         Object,
     }
 
-    public enum PortType
+    public enum PropertyType
     {
         None,
         /// <summary>
@@ -38,32 +38,11 @@ namespace Raydata.VisualProgramming
         Paramter,
     }
 
-    public enum LineType
-    {
-        None,
-        /// <summary>
-        /// 执行顺序的线
-        /// </summary>
-        Routine,
-        /// <summary>
-        /// 传递参数的线
-        /// </summary>
-        Paramter,
-        
-    }
 
     public enum NodeType
     {
-        None,
-        /// <summary>
-        /// 执行顺序的线
-        /// </summary>
+        MonoBehaviour,
         Routine,
-        /// <summary>
-        /// 传递参数的线
-        /// </summary>
-        Paramter,
+        Parameter
     }
-
-
 }

@@ -1,6 +1,6 @@
 // *************************************************************************************************************
 // 创建者: 魏国栋
-// 创建时间: 2020/12/24 18:44:55
+// 创建时间: 2020/12/25 21:42:59
 // 挂载对象: 
 // 功能: 
 // 版 本：v 1.2.0
@@ -13,9 +13,8 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public class VisualProgrammingLauncher : MonoBehaviour
+    public class Launcher : MonoBehaviour
     {
-        public Object file;
         
         void Start()
         {

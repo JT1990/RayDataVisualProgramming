@@ -13,7 +13,9 @@ public class ScriptTemplatesEditor : UnityEditor.AssetModificationProcessor {
         // 只修改C#脚本
         path = path.Replace (".meta", "");
         if (!path.EndsWith(".cs")) return;
-        var allText = File.ReadAllText (templatepath);
+        //避免已经创建的脚本再次修改/移动时会被重置
+        if(File.ReadAllText(path).Contains("创建者")) return;
+        var allText = File.ReadAllText(templatepath); 
         switch (autorCreat) {
             case "DESKTOP-5NBUIJ6":
                 allText = allText.Replace("autorCreat", "张志远");

@@ -18,34 +18,33 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public class MainWindowCtrl : MonoBehaviour,IPointerClickHandler,IBeginDragHandler,IDragHandler,IEndDragHandler,IScrollHandler
+    public class MainWindowCtrl : SingleMono<MainWindowCtrl>,IPointerClickHandler,IBeginDragHandler,IDragHandler,IEndDragHandler,IScrollHandler
     {
         #region 实现接口
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Right) RightBtnOnClick(eventData.selectedObject, eventData.position);
-            if(eventData.button == PointerEventData.InputButton.Left) LeftBtnOnClick(eventData.selectedObject, eventData.position);
+            //if(eventData.button == PointerEventData.InputButton.Right) RightBtnOnClick(eventData.selectedObject, eventData.position);
+            //if(eventData.button == PointerEventData.InputButton.Left) LeftBtnOnClick(eventData.selectedObject, eventData.position);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Middle) MiddleBtnOnBeginDrag(eventData.selectedObject, eventData.position);
+            //if(eventData.button == PointerEventData.InputButton.Middle) MiddleBtnOnBeginDrag(eventData.selectedObject, eventData.position);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Middle) MiddleBtnOnDrag(eventData.selectedObject, eventData.position);
+            //if(eventData.button == PointerEventData.InputButton.Middle) MiddleBtnOnDrag(eventData.selectedObject, eventData.position);
         }
 
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Middle) MiddleBtnOnEndDrag(eventData.selectedObject, eventData.position);
+            //if(eventData.button == PointerEventData.InputButton.Middle) MiddleBtnOnEndDrag(eventData.selectedObject, eventData.position);
         }
 
         public void OnScroll(PointerEventData eventData)
         {
-            Debug.Log("Onscroll");
             //MiddleBtnOnScroll(eventData.scrollDelta.y);
         }
         #endregion
@@ -53,7 +52,7 @@ namespace Raydata.VisualProgramming
         #region 公开字段
         public GameObject choosabilityNodeGroup;
         public Transform MainPanel;
-        public Transform inport;
+        public GameObject dot;
         #endregion
 
         #region 公开字段

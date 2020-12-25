@@ -59,7 +59,7 @@ namespace Raydata.VisualProgramming
         {
 
             if(eventData.pointerCurrentRaycast.gameObject.name == "NameText")
-                eventData.pointerCurrentRaycast.gameObject.GetComponent<TransportationHub>().Send(cube);
+                eventData.pointerCurrentRaycast.gameObject.GetComponent<Bridge>().Send(cube);
          
             mousePointer.gameObject.SetActive(false);
         }

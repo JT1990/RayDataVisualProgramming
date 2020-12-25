@@ -14,23 +14,13 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public class StartNode : NodeBase
+    public class StartNode : MonoBehaviourNode
     {
 
-        public override void InitPortData()
-        {
-            inRoutinePort = new PortModel(false);
-            inParamterPort = new PortModel(false);
-            outParamterPort = new PortModel(false);
-
-            outRoutinePort = new PortModel();
-            outRoutinePort.lineType = LineType.Routine;
-            gotoNodes = new List<NodeBase>();
+        public override void Start()
+        { 
+            base.Start();
         }
 
-        public override void SaveProgrammingToFile()
-        {
-
-        }
     }
 }

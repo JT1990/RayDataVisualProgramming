@@ -16,38 +16,44 @@ namespace Raydata.VisualProgramming
 {
     public class LineRenderDrawerController : SingleMono<LineRenderDrawerController>
     {
-        #region 公开字段
-        public GameObject m_lineRender;
+        /// <summary>
+        /// 预制体
+        /// </summary>
+        public GameObject linerenderPrfab;
+
         /// <summary>
         /// 一条线必定有两个顶点,一个入点和一个出点.   入点确定了fromnode,出点确定了tonode
         /// </summary>
         public LineRenderDrawer curLine;
-        public PortModel curClickPort;
-        public PortType secondClick_OneLine = PortType.None;
-        public bool isEndClicked;
-        #endregion
 
-        #region 私有字段
+        /// <summary>
+        /// 
+        /// </summary>
+        public Port curClickPort;
+     
         /// <summary>
         /// 记录所有的线,
         /// </summary>
         private List<LineRenderDrawer> lines = new List<LineRenderDrawer>();
 
-        #endregion
+        /// <summary>
+        /// 
+        /// </summary>
+        private Transform LineRenderRoot;
 
         private void Start()
         {
-            if(m_lineRender == null) m_lineRender = Resources.Load<GameObject>("Prefab/LineRender/LineRenderPrefab");
+            if(linerenderPrfab == null) linerenderPrfab = Resources.Load<GameObject>("Prefab/LineRender/LineRenderPrefab");
+            if(LineRenderRoot == null) LineRenderRoot = new GameObject("LineRenderRoot").transform;
 
         }
 
-        public void AddLine(LineRenderDrawer line, NodeBase node)
+        public void AddLine(LineRenderDrawer line)
         {
             //记录之前先清空,然后赋值
             curLine = null;
             curLine = line;
             lines.Add(line);
-            curLine.fromNode = node;//
         }
         public void RemoveLine(LineRenderDrawer line)
         {
@@ -64,6 +70,7 @@ namespace Raydata.VisualProgramming
             //减少Update的刷新次数,优化性能
             if(isUpdate)
             {
+                Debug.Log(lines.Count);
                 for(int i = 0; i < lines.Count; i++)
                 {
                     lines[i].DrawLineInUpdate();
@@ -80,14 +87,20 @@ namespace Raydata.VisualProgramming
         }
 
 
-
-
         public void UpdatePointWhenScroll()
         {
             for(int i = 0; i < lines.Count; i++)
             {
                 lines[i].ReDrawWhenOnScroll();
             }
+        }
+
+        public LineRenderer InstantiateLineRenderer(int positionCount)
+        {
+
+            LineRenderer lr = GameObject.Instantiate<GameObject>(linerenderPrfab, LineRenderRoot).GetComponent<LineRenderer>();
+            lr.positionCount = positionCount;
+            return lr;
         }
     }
 }
