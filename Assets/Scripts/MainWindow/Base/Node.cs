@@ -19,7 +19,7 @@ namespace Raydata.VisualProgramming
         /// <summary>
         /// 该节点所有的连线
         /// </summary>
-        public List<LineRenderDrawer> lines;
+        public List<LineRenderDrawer> lines=new List<LineRenderDrawer>();
 
         /// <summary>
         /// 描述
@@ -46,12 +46,16 @@ namespace Raydata.VisualProgramming
         {
             if( LineRenderDrawerController.Instance.curLine!=null)
             {
-                LineRenderDrawerController.Instance.curLine.isEndDraw = true;
+                LineRenderDrawer line = LineRenderDrawerController.Instance.curLine;
+                line.isEndDraw = true;
+                line.belongToNode = this;
+                line.outPort = port;
                 LineRenderDrawerController.Instance.curClickPort = port;
             }
             else
             {
                 LineRenderDrawer line = new LineRenderDrawer(port);
+                lines.Add(line);
             }
         }
           

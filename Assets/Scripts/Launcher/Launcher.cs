@@ -15,11 +15,23 @@ namespace Raydata.VisualProgramming
 {
     public class Launcher : MonoBehaviour
     {
-        
+        public GameObject MainPanel;
+        public StartNode startNode;
         void Start()
         {
-
+            
         }
 
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                for(int i = 0; i < startNode.lines.Count; i++)
+                {
+                    Debug.Log(startNode.lines[i].outPort.belongToNode.gameObject.name);
+                }
+              
+            }
+        }
     }
 }
