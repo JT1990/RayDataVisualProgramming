@@ -18,9 +18,19 @@ namespace Raydata.VisualProgramming
     {
         #region 公开字段
         public GameObject m_lineRender;
+        /// <summary>
+        /// 一条线必定有两个顶点,一个入点和一个出点.   入点确定了fromnode,出点确定了tonode
+        /// </summary>
+        public LineRenderDrawer curLine;
+        public PortModel curClickPort;
+        public PortType secondClick_OneLine = PortType.None;
+        public bool isEndClicked;
         #endregion
 
         #region 私有字段
+        /// <summary>
+        /// 记录所有的线,
+        /// </summary>
         private List<LineRenderDrawer> lines = new List<LineRenderDrawer>();
 
         #endregion
@@ -31,9 +41,13 @@ namespace Raydata.VisualProgramming
 
         }
 
-        public void AddLine(LineRenderDrawer line)
+        public void AddLine(LineRenderDrawer line, NodeBase node)
         {
+            //记录之前先清空,然后赋值
+            curLine = null;
+            curLine = line;
             lines.Add(line);
+            curLine.fromNode = node;//
         }
         public void RemoveLine(LineRenderDrawer line)
         {
@@ -43,24 +57,36 @@ namespace Raydata.VisualProgramming
             }
         }
 
+
+        bool isUpdate=true;
         private void Update()
         {
-            StartCoroutine(draw());
-           
-        }
-        IEnumerator draw()
-        {
-            for (int i = 0; i < lines.Count; i++)
+            //减少Update的刷新次数,优化性能
+            if(isUpdate)
             {
-                lines[i].DrawLineInUpdate();
-                yield return new WaitForSeconds(0.1f);
+                for(int i = 0; i < lines.Count; i++)
+                {
+                    lines[i].DrawLineInUpdate();
+                }
+                isUpdate = false;
+                StartCoroutine(draw());
             }
         }
-        internal void UpdatePointWhenScroll()
+
+        IEnumerator draw()
+        {
+            yield return new WaitForSeconds(0.01f);
+            isUpdate = true;
+        }
+
+
+
+
+        public void UpdatePointWhenScroll()
         {
             for(int i = 0; i < lines.Count; i++)
             {
-
+                lines[i].ReDrawWhenOnScroll();
             }
         }
     }

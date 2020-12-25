@@ -15,15 +15,7 @@ namespace Raydata.VisualProgramming
 {
     public class __ScriptTemplates : MonoBehaviour
     {
-        #region 公开字段
-
-        #endregion
-
-        #region 私有字段
-
-
-        #endregion
-
+        
         void Start()
         {
 

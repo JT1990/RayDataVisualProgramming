@@ -1,6 +1,6 @@
 // *************************************************************************************************************
 // 创建者: 魏国栋
-// 创建时间: 2020/12/23 17:16:18
+// 创建时间: 2020/12/22 15:05:27
 // 挂载对象: 
 // 功能: 
 // 版 本：v 1.2.0
@@ -13,25 +13,19 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public enum ParameterType
+ 
+    /// <summary>
+    /// 参数中转站
+    /// </summary>
+    public class TransportationHub : MonoBehaviour
     {
-        GameObject,
-        Transform,
-        String,
-        Int,
-        Double,
-        Float,
-        List,
-        Object,
+        public delegate void SendArgument(object go);
+        public event SendArgument SendArgumentEvent;
+ 
+        public void Send(object go)
+        {
+            SendArgumentEvent(go);
+        }
+       
     }
-
-    public enum PortType
-    {
-        None,
-        RoutineInProt,
-        RoutineOutProt,
-        ParamterInPort,
-        ParamterOutPort
-    }
-
 }

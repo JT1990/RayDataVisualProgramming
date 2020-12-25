@@ -19,15 +19,18 @@ namespace Raydata.VisualProgramming
         public LineRenderer m_line;
         public int smooth = 30;
 
-        private Vector3 startPosition;
-        private Vector3 endPosition;
+        public Vector3 startPosition;
+        public Vector3 endPosition;
 
-        private bool isStartDraw;
-        private bool isEndDraw;
+        public bool isStartDraw;
+        public bool isEndDraw;
 
-        private GameObject dot;
+        public GameObject dot;
 
-        private NodeUIBase node;
+        public NodeBase fromNode;
+        public NodeBase toNode;
+
+        private LineType lineType;
         #endregion
 
         #region 私有字段
@@ -36,60 +39,58 @@ namespace Raydata.VisualProgramming
 
         #endregion
 
-        public LineRenderDrawer(NodeUIBase node)
+        public LineRenderDrawer(NodeBase fromNode,LineType lineType)
         {
-            Debug.Log("new ");
-            this.node = node;
-            Init();
-        }
+            this.fromNode = fromNode;
+            this.lineType = lineType;
 
-        void Init()
-        {
-            startPosition = node.curClickTrans.position;
+            startPosition = fromNode.curClickTrans.position;
             isStartDraw = true;
             //生成dot
-            dot = GameObject.Instantiate<GameObject>(node.dotImg, node.dotImg.transform.parent);
+            dot = GameObject.Instantiate<GameObject>(fromNode.dotImg, fromNode.dotImg.transform.parent);
             dot.SetActive(true);
 
             //
             m_line = GameObject.Instantiate<GameObject>(LineRenderDrawerController.Instance.m_lineRender).GetComponent<LineRenderer>();
-            m_line.positionCount = smooth ;
+            m_line.positionCount = smooth;
 
-          
-
+            //
+            LineRenderDrawerController.Instance.isEndClicked = true;
         }
+ 
 
-        Vector3 temp;
         public void DrawLineInUpdate()
         {
-             
+            //
             if(m_line==null)
             {
                 Debug.LogError("生成linerender失败");
                 return;
             }
+            //
             if (prePointerpPostion==Input.mousePosition)
             {
                 return;
             }
             prePointerpPostion = Input.mousePosition;
+            //
             if (isStartDraw)
             {
-                if (isEndDraw)
+                if(isEndDraw)
                 {
-                    endPosition = ToolUtility.WorldToScreenPoint(dot.transform.position);
+                    endPosition = LineRenderDrawerController.Instance.curClickPort.gameObject.transform.position;
                     isStartDraw = false;
+                    dot.SetActive(false);
                 }
                 else
                 {
                     endPosition = ToolUtility.ScreenPointToLocalPointInRectangle(Input.mousePosition);
                     dot.transform.position = ToolUtility.ScreenPointToLocalPointInRectangle(Input.mousePosition);
                 }
-
-                Debug.Log(endPosition);
                 DrawBezierCurver_ThreeOrder();
             }
         }
+
         public void DrawBezierCurver_ThreeOrder()
         {
             float offsetX = Mathf.Abs(startPosition.x - endPosition.x) / 3;
@@ -102,6 +103,11 @@ namespace Raydata.VisualProgramming
 
             linepoints = BezierCurversMathf.GetBezierCurvesVertex(tempV3s, 4, 1f / smooth);
             m_line.SetPositions(linepoints);
+        }
+
+        public void ReDrawWhenOnScroll()
+        {
+            DrawBezierCurver_ThreeOrder();
         }
     }
 }

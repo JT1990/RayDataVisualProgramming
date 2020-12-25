@@ -15,22 +15,29 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public class SelectObjectNode : NodeUIBase
+    public class SelectObjectNode : NodeBase
     {
-        #region 公开字段
         public GameObject nameText;
         public TransportationHub hub;
-        private GameObject UserDefinedObject;
-        #endregion
+        public GameObject UserDefinedObject;
 
-        #region 私有字段
+     
 
-
-        #endregion
-
-        public override void Start()
+        public override void InitPortData()
         {
-            base.Start();
+            inRoutinePort = new PortModel(false); 
+            outRoutinePort = new PortModel(false);
+            inParamterPort = new PortModel(false);
+
+            outParamterPort = new PortModel();
+            outParamterPort.outputParamType = ParamType.GameObject;
+            outParamterPort.outputParam = UserDefinedObject;
+           
+        }
+
+        public override void Awake()
+        {
+            base.Awake();
             //注册事件
             hub.SendArgumentEvent += GetGameobject;
 
@@ -43,9 +50,10 @@ namespace Raydata.VisualProgramming
             Debug.Log("用户定义的物体为 : " + go);
         }
 
-     
 
-
-
+        public override void SaveProgrammingToFile()
+        {
+            
+        }
     }
 }
