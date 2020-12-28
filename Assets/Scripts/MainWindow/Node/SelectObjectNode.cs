@@ -21,7 +21,6 @@ namespace Raydata.VisualProgramming
         [HideInInspector]
         public GameObject UserDefinedObject;
 
-
         public override void Start()
         {
             base.Start();
@@ -34,6 +33,9 @@ namespace Raydata.VisualProgramming
             nameText.GetComponent<Text>().text = UserDefinedObject.name;
             Debug.Log("用户定义的物体为 : " + go);
         }
-
+        public override void HandleNodeAction()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,9 +14,11 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public class ParameterNode : Node
+    public abstract class ParameterNode : Node,IHandleNodeAction
     {
         public Port outParameterPort;
+
+      
 
         public virtual void Start()
         {
@@ -32,6 +34,10 @@ namespace Raydata.VisualProgramming
         {
             PortOnClick(outParameterPort);
         }
+
+
+        public abstract void HandleNodeAction();
+        
     }
     
 }

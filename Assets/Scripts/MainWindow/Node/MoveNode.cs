@@ -6,6 +6,7 @@
 // 版 本：v 1.2.0
 // *************************************************************************************************************
 
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,9 +26,42 @@ namespace Raydata.VisualProgramming
         public GameObject UserDefinedObject;
 
 
+        private float x, y, z;
+        private float duration;
+        public override void Start()
+        {
+            base.Start();
+            inputField_X.onEndEdit.AddListener(inputField_X_OnEndEdit);
+            inputField_y.onEndEdit.AddListener(inputField_Y_OnEndEdit);
+            inputField_z.onEndEdit.AddListener(inputField_Z_OnEndEdit);
+            inputField_time.onEndEdit.AddListener(inputField_Time_OnEndEdit);
+        }
 
-        
+        private void inputField_X_OnEndEdit(string arg0)
+        {
+            x = float.Parse(arg0);
+        }
 
+        private void inputField_Y_OnEndEdit(string arg0)
+        {
+            y = float.Parse(arg0);
+        }
 
+        private void inputField_Z_OnEndEdit(string arg0)
+        {
+            z = float.Parse(arg0);
+        }
+
+        private void inputField_Time_OnEndEdit(string arg0)
+        {
+            duration = float.Parse(arg0);
+        }
+
+        public override void HandleNodeAction()
+        {
+            UserDefinedObject = ((SelectObjectNode)inParameterPort.belongToLine.inPort.belongToNode).UserDefinedObject;
+            Debug.Log(UserDefinedObject.name);
+            UserDefinedObject.transform.DOMove(new Vector3(x, y, z), duration);
+        }
     }
 }

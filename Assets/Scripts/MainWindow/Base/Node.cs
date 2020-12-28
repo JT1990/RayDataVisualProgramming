@@ -11,7 +11,7 @@ namespace Raydata.VisualProgramming
     /// 1.每个node只能有一个运行逻辑入口,但一个入口可以被多个node连接
     /// 2.每个node只能有一个运行逻辑出口,但一个出口可以连接多个node
     /// </summary>
-    public class Node : MonoBehaviour
+    public abstract class Node : MonoBehaviour
     {
 
         public NodeType nodeType { get; protected set; }

@@ -15,7 +15,7 @@ using UnityEngine.UI;
 
 namespace Raydata.VisualProgramming
 {
-    public class RoutineNode : Node
+    public abstract class RoutineNode : Node,IHandleNodeAction
     {
         public Port inRoutinePort;
         public Port outRoutinePort;
@@ -65,6 +65,8 @@ namespace Raydata.VisualProgramming
         {
             PortOnClick(outParameterPort);
         }
+
+        public abstract void HandleNodeAction();
     }
 
 

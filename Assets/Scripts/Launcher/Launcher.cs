@@ -28,10 +28,9 @@ namespace Raydata.VisualProgramming
             {
                 for(int i = 0; i < startNode.lines.Count; i++)
                 {
-
-                    MoveNode movenode = (MoveNode)startNode.lines[i].outPort.belongToNode;
-                    GameObject cube = ((SelectObjectNode)movenode.inParameterPort.belongToLine.inPort.belongToNode).UserDefinedObject;
-                    cube.transform.DOMove(new Vector3(10f, 10f, 10f ), 5f) ;
+                    ((MoveNode)startNode.lines[i].outPort.belongToNode).HandleNodeAction();
+                  
+                     
                 }
               
             }
